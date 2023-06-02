@@ -1,4 +1,3 @@
-﻿namespace ZSCourse.IdentityService.Requests
-{
-    public record LogoutRequest(string Token);
-}
+﻿namespace ZSCourse.IdentityService;
+
+public record LogoutRequest(string Token);

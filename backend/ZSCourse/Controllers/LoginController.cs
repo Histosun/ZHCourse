@@ -1,14 +1,13 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
-using ZSCourse.IdentityService.Requests;
-using ZSCourse.IdentityService.Services;
+using ZS.JWT;
 
 namespace ZSCourse.IdentityService.Controllers
 {
     [ApiController]
     [Route("[controller]/[action]")]
-    [Authorize(AuthenticationSchemes = "Schema")]
+    [Authorize(AuthenticationSchemes = ZSJWTDefaults.Schema)]
     public class LoginController : ControllerBase
     {
         private readonly ILoginService idService;
@@ -48,7 +47,6 @@ namespace ZSCourse.IdentityService.Controllers
         [HttpGet]
         public void Test()
         {
-
         }
     }
 }

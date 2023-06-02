@@ -1,8 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using ZSCourse.IdentityService.Entities;
 
-namespace IdentityService.Infrastructure.Configs
+namespace ZSCourse.IdentityService
 {
     class RoleConfig : IEntityTypeConfiguration<Role>
     {

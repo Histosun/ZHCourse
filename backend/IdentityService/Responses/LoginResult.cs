@@ -1,4 +1,5 @@
-﻿namespace ZSCourse.IdentityService.Responses
+﻿
+namespace ZSCourse.IdentityService
 {
     public class LoginResult
     {

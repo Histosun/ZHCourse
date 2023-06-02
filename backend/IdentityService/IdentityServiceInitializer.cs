@@ -7,9 +7,6 @@ using Microsoft.IdentityModel.Tokens;
 using StackExchange.Redis;
 using System.Text;
 using ZS.JWT;
-using ZSCourse.IdentityService.Entities;
-using ZSCourse.IdentityService.Services;
-using Role = ZSCourse.IdentityService.Entities.Role;
 
 namespace ZSCourse.IdentityService
 {
@@ -49,8 +46,8 @@ namespace ZSCourse.IdentityService
             builder.Services.AddAuthentication(options =>
             {
                 // makes controller to use our sheme as default
-                options.DefaultChallengeScheme = "Schema";
-            }).AddScheme<ZSJWTRedisAuthenticationOptions, ZSJWTRedisAuthenticationHandler>("Schema", options =>
+                options.DefaultChallengeScheme = ZSJWTDefaults.Schema;
+            }).AddScheme<ZSJWTRedisAuthenticationOptions, ZSJWTRedisAuthenticationHandler>(ZSJWTDefaults.Schema, options =>
             {
                 options.TokenValidationParameters.ValidateIssuer = true;
                 options.TokenValidationParameters.ValidateAudience = true;

@@ -13,5 +13,6 @@ public class FileServiceInitializer
             string connStr = dbconfig.GetSection("ConnStr").Value;
             options.UseNpgsql(connStr);
         });
+        builder.Services.AddScoped<IFileService, FileService>();
     }
 }

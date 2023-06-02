@@ -4,27 +4,22 @@ using Microsoft.IdentityModel.Tokens;
 using StackExchange.Redis;
 using System.Diagnostics;
 using System.IdentityModel.Tokens.Jwt;
-using System.Net;
 using System.Security.Claims;
 using System.Text;
 using ZS.JWT;
-using ZSCourse.IdentityService.Entities;
-using Role = ZSCourse.IdentityService.Entities.Role;
 
-namespace ZSCourse.IdentityService.Services
+namespace ZSCourse.IdentityService
 {
     public class LoginService : ILoginService
     {
         private readonly UserManager<User> userManager;
-        private readonly RoleManager<Role> roleManager;
         private readonly IOptions<JWTOptions> optJWT;
         private readonly IConnectionMultiplexer connectionMultiplexer;
 
 
-        public LoginService(UserManager<User> userManager, RoleManager<Role> roleManager, IConnectionMultiplexer connectionMultiplexer, IOptions<JWTOptions> optJWT)
+        public LoginService(UserManager<User> userManager, IConnectionMultiplexer connectionMultiplexer, IOptions<JWTOptions> optJWT)
         {
             this.userManager = userManager;
-            this.roleManager = roleManager;
             this.optJWT = optJWT;
             this.connectionMultiplexer = connectionMultiplexer;
         }

@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ZSCourse.FileService.Entities;
 
 namespace ZSCourse.FileService;
 

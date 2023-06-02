@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace ZSCourse.IdentityService.Entities
+namespace ZSCourse.IdentityService;
+
+public class Role: IdentityRole<long>
 {
-    public class Role: IdentityRole<long>
-    {
-    }
 }

@@ -1,4 +1,4 @@
-﻿namespace ZSCourse.FileService.Entities;
+﻿namespace ZSCourse.FileService;
 
 public class UploadedFile
 {
@@ -30,11 +30,10 @@ public class UploadedFile
     /// </summary>
     public Uri RemoteUrl { get; private set; }
 
-    public static UploadedFile Create(long id, long fileSizeInBytes, string fileName, string fileSHA256Hash, Uri backupUrl, Uri remoteUrl)
+    public static UploadedFile Create(long fileSizeInBytes, string fileName, string fileSHA256Hash, Uri backupUrl, Uri remoteUrl)
     {
         UploadedFile file = new UploadedFile()
         {
-            Id = id,
             CreationTime = DateTime.Now,
             FileName = fileName,
             FileSHA256Hash = fileSHA256Hash,
