@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using ZS.JWT;
+using ZSCourse.Requests;
 
 namespace ZSCourse.IdentityService.Controllers
 {
