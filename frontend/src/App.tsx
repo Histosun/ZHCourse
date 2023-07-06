@@ -4,6 +4,7 @@ import { Route, Routes, useRoutes } from 'react-router';
 
 import MenuBar from './component/MenuBar';
 import { routes } from './routes/routes';
+import { BrowserRouter } from 'react-router-dom';
 
 const { Header, Content, Footer } = Layout;
 
@@ -28,16 +29,19 @@ const App: React.FC = () => {
 
         {/* Routes */}
         <Content
-            style={{
-              padding: 24,
-              margin: 0,
-              background: colorBgContainer,
-            }}
-          >
-          <Suspense fallback={<div>Loading...</div>}>
-            {elements}
-          </Suspense>
-          </Content>
+          style={{
+            padding: 24,
+            margin: 0,
+            background: colorBgContainer,
+          }}
+        >
+
+          <BrowserRouter>
+            <Suspense fallback={<div>Loading...</div>}>
+              {elements}
+            </Suspense>
+          </BrowserRouter>
+        </Content>
       </Content>
       <Footer style={{ textAlign: 'center' }}>Ant Design ©2023 Created by Ant UED</Footer>
     </Layout>
