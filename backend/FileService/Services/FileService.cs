@@ -31,7 +31,7 @@ public class FileService : IFileService
         if(oldFile != null)
             return oldFile;
 
-
+        // If no file found then great a new file
         DateTime today = DateTime.Today;
         string key = $"{today.Year}/{today.Month}/{today.Day}/{sha256Hash}/{fileName}";
         

@@ -6,7 +6,7 @@ namespace ZSCourse.Controllers;
 [ApiController]
 public class AlbumController : ControllerBase
 {
-    private readonly IListeningRepository repository;
+   /* private readonly IListeningRepository repository;
     private readonly IMemoryCacheHelper cacheHelper;
     public AlbumController(IListeningRepository repository, IMemoryCacheHelper cacheHelper)
     {
@@ -31,7 +31,6 @@ public class AlbumController : ControllerBase
     [Route("{categoryId}")]
     public async Task<ActionResult<AlbumVM[]>> FindByCategoryId([RequiredGuid] Guid categoryId)
     {
-        //写到单独的local函数的好处是避免回调中代码太复杂
         Task<Album[]> FindDataAsync()
         {
             return repository.GetAlbumsByCategoryIdAsync(categoryId);
@@ -39,5 +38,5 @@ public class AlbumController : ControllerBase
         var task = cacheHelper.GetOrCreateAsync($"AlbumController.FindByCategoryId.{categoryId}",
             async (e) => AlbumVM.Create(await FindDataAsync()));
         return await task;
-    }
+    }*/
 }

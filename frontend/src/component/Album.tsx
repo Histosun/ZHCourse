@@ -1,7 +1,13 @@
-import React from 'react'
+import { useState } from "react";
 
-export default function Album() {
+const Album: React.FC = () => {
+  const [defaultValue, SetDefault] = useState(1);
+
   return (
-    <div>Album</div>
+    <div>
+      Album123
+    </div>
   )
 }
+
+export default Album;

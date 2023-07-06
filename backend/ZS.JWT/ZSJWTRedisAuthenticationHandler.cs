@@ -49,7 +49,7 @@ public class ZSJWTRedisAuthenticationHandler : ZSJWTAuthenticationHandler<ZSJWTR
         string userId = idClaim.Value;
 
         if(!await ValidateJWTRedisAsync(userId, tokens))
-            return AuthenticateResult.Fail("Token out dated!");
+            return AuthenticateResult.Fail("Token outdated!");
 
         var tokenValidatedContext = new ZSJWTRedisValidatedContext(Context, Scheme, Options) { Principal = principal, SecurityToken = validatedToken };
 

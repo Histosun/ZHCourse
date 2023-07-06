@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
+using FileService.Services;
 
 namespace ZSCourse.FileService;
 
@@ -14,5 +15,7 @@ public class FileServiceInitializer
             options.UseNpgsql(connStr);
         });
         builder.Services.AddScoped<IFileService, FileService>();
+        builder.Services.Configure<BackupStorageOptions>(builder.Configuration.GetSection("FileService:Backup"));
+        builder.Services.AddScoped<IStorageClient, BackupStorageClient>();
     }
 }
