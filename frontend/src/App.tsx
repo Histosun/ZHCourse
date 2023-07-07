@@ -1,10 +1,9 @@
 import React, { Suspense } from 'react';
 import { Breadcrumb, Layout, theme } from 'antd';
-import { Route, Routes, useRoutes } from 'react-router';
+import { useRoutes } from 'react-router';
 
 import MenuBar from './component/MenuBar';
 import { routes } from './routes/routes';
-import { BrowserRouter } from 'react-router-dom';
 
 const { Header, Content, Footer } = Layout;
 

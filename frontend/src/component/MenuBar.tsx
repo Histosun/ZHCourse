@@ -33,7 +33,8 @@ const MenuBar: React.FC = () => {
       items={[
         getItem("Home", "/home"),
         getItem("Chinese", "/listening/chinese"),
-        getItem("English", "/listening/english")
+        getItem("English", "/listening/english"),
+        getItem("Login", "/login")
       ]}
       onClick={menuClick}
     />
