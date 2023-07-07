@@ -2,10 +2,6 @@ import axios, { InternalAxiosRequestConfig } from "axios"
 
 axios.defaults.headers['Content-Type'] = 'application/json;charset=utf-8'
 
-interface AxiosConfigData {
-    isToken: boolean;
-}
-
 const baseUrl: string = "https://localhost:7159";
 
 let request = axios.create({
@@ -14,7 +10,10 @@ let request = axios.create({
 });
 
 request.interceptors.request.use(
-    (config: InternalAxiosRequestConfig<AxiosConfigData>) => {
+    (config: InternalAxiosRequestConfig) => {
+        if(config.headers.isToken){
+            
+        }
         return config;
     },
     err => {
@@ -28,7 +27,6 @@ request.interceptors.response.use(
         return res;
     },
     err => {
-        console.log(123);
         return Promise.reject(err)
     }
 );

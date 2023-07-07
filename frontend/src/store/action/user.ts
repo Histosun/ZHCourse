@@ -1,14 +1,15 @@
 import * as TYPES from "../action_types"
 
 export default {
-    login() {
+    login(token: string) {
         return {
-            type: TYPES.AUTH_LOGIN
+            type: TYPES.USER_LOGIN,
+            token: token
         }
     },
     logout() {
         return {
-            type: TYPES.AUTH_LOGOUT
+            type: TYPES.USER_LOGOUT
         }
     }
 }

@@ -14,6 +14,9 @@ import {
 import { Space } from 'antd';
 import type { CSSProperties } from 'react';
 import api from '../api';
+import { connect } from 'react-redux';
+import action from '../store/action';
+import { useNavigate } from 'react-router';
 
 // customize form validator
 const validators = {
@@ -23,13 +26,12 @@ const validators = {
     return Promise.resolve();
   },
   password(_: any, value: string) {
-    if(!value) return Promise.reject();
+    if (!value) return Promise.reject();
     value = value.trim();
     if (value.length == 0 || value.length < 6) return Promise.reject();
     return Promise.resolve();
   }
 }
-
 
 const iconStyles: CSSProperties = {
   marginInlineStart: '16px',
@@ -39,9 +41,22 @@ const iconStyles: CSSProperties = {
   cursor: 'pointer',
 };
 
-export default () => {
+const LoginView = (props: any) => {
+  let navigate = useNavigate();
+  let { login } = props;
+
   const submit = async (values: any) => {
-    api.login({ username: values.username, password: values.password })
+    api.user.login({ username: values.username, password: values.password })
+      .then(result => {
+        let token = result.data as string;
+        if (token) {
+          login(token);
+          navigate(-1);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   return (
@@ -115,3 +130,5 @@ export default () => {
     </ProConfigProvider>
   );
 };
+
+export default connect(null, action.user)(LoginView);

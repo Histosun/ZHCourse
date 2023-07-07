@@ -1,2 +1,2 @@
-export const AUTH_LOGIN = "AUTH_LOGIN";
-export const AUTH_LOGOUT = "AUTH_LOGOUT";
+export const USER_LOGIN = "USER_LOGIN";
+export const USER_LOGOUT = "USER_LOGOUT";

@@ -21,9 +21,9 @@ function getItem(
 }
 
 const MenuBar: React.FC = () => {
-  const nav = useNavigate();
+  const navigate = useNavigate();
   const menuClick = (menuInfo: { key: string }) => {
-    nav(menuInfo.key)
+    navigate(menuInfo.key)
   }
 
   return (
