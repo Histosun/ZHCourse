@@ -13,13 +13,15 @@ namespace ZSCourse.IdentityService
     public class LoginService : ILoginService
     {
         private readonly UserManager<User> userManager;
+        private readonly RoleManager<Role> roleManager;
         private readonly IOptions<JWTOptions> optJWT;
         private readonly IConnectionMultiplexer connectionMultiplexer;
 
 
-        public LoginService(UserManager<User> userManager, IConnectionMultiplexer connectionMultiplexer, IOptions<JWTOptions> optJWT)
+        public LoginService(UserManager<User> userManager, RoleManager<Role> roleManager, IConnectionMultiplexer connectionMultiplexer, IOptions<JWTOptions> optJWT)
         {
             this.userManager = userManager;
+            this.roleManager = roleManager;
             this.optJWT = optJWT;
             this.connectionMultiplexer = connectionMultiplexer;
         }
@@ -70,21 +72,40 @@ namespace ZSCourse.IdentityService
 
         public async Task<bool> CreateWorldAsync()
         {
-            User user = await userManager.FindByNameAsync("admin");
-            if (user != null)
+            string userRoleName = "User";
+            if(await roleManager.RoleExistsAsync(userRoleName))
             {
-                await userManager.AddToRoleAsync(user, "User");
-                await userManager.AddToRoleAsync(user, "Admin");
-                return false;
+                Role userRole = new Role();
+                userRole.Name = userRoleName;
             }
-            user = new User();
-            user.UserName = "admin";
-            var r = await userManager.CreateAsync(user, "YouNeverKnow!123");
-            Debug.Assert(r.Succeeded);
-            r = await userManager.AddToRoleAsync(user, "User");
-            Debug.Assert(r.Succeeded);
-            r = await userManager.AddToRoleAsync(user, "Admin");
-            Debug.Assert(r.Succeeded);
+            string adminRoleName = "Admin";
+            if (await roleManager.RoleExistsAsync(adminRoleName))
+            {
+                Role userRole = new Role();
+                userRole.Name = adminRoleName;
+            }
+
+            string adminUserName = "admin";
+            User user = await userManager.FindByNameAsync(adminUserName);
+            if (user == null)
+            {
+                user = new User();
+                user.UserName = adminUserName;
+                var r = await userManager.CreateAsync(user, "YouNeverKnow!123");
+                Debug.Assert(r.Succeeded);
+            }
+
+            if(!await userManager.IsInRoleAsync(user, userRoleName))
+            {
+                var r = await userManager.AddToRoleAsync(user, userRoleName);
+                Debug.Assert(r.Succeeded);
+            }
+
+            if (!await userManager.IsInRoleAsync(user, adminRoleName))
+            {
+                var r = await userManager.AddToRoleAsync(user, adminRoleName);
+                Debug.Assert(r.Succeeded);
+            }
             return true;
         }
 

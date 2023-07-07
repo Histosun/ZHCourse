@@ -24,7 +24,6 @@ request.interceptors.request.use(
         console.log(err);
         Promise.reject(err);
     }
-
 );
 
 request.interceptors.response.use(
@@ -35,3 +34,5 @@ request.interceptors.response.use(
         return Promise.reject(err)
     }
 );
+
+export default request;

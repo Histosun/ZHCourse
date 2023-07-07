@@ -21,8 +21,7 @@ namespace ZSCourse.IdentityService.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> CreateWorld()
         {
-            if (await idService.CreateWorldAsync())
-                return StatusCode((int)HttpStatusCode.Conflict, "Already Initialized");
+            await idService.CreateWorldAsync();
             return Ok();
         }
 
@@ -31,7 +30,8 @@ namespace ZSCourse.IdentityService.Controllers
         public async Task<ActionResult<string>> LoginByUserNameAndPwd(LoginByUserNameAndPwdRequest req)
         {
             (var checkResult, var token) = await idService.LoginByUserNameAndPwdAsync(req.UserName, req.Password);
-            if (checkResult.Succeeded) return token!;
+            if (checkResult.Succeeded) 
+                return token!;
             else if (checkResult.IsLockedOut)
                 return StatusCode((int)HttpStatusCode.Locked, "User has been locked!");
             string msg = checkResult.ToString();
