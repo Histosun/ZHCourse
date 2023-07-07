@@ -1,27 +1,28 @@
+import { HomeOutlined } from '@ant-design/icons';
 import { Menu, MenuProps } from 'antd';
 import { useNavigate } from 'react-router';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
 function getItem(
-    label: React.ReactNode,
-    key?: React.Key | null,
-    icon?: React.ReactNode,
-    children?: MenuItem[],
-    theme?: 'light' | 'dark',
-  ): MenuItem {
-    return {
-      key,
-      icon,
-      children,
-      label,
-      theme,
-    } as MenuItem;
-  }
+  label: React.ReactNode,
+  key?: React.Key | null,
+  icon?: React.ReactNode,
+  children?: MenuItem[],
+  theme?: 'light' | 'dark',
+): MenuItem {
+  return {
+    key,
+    icon,
+    children,
+    label,
+    theme,
+  } as MenuItem;
+}
 
 const MenuBar: React.FC = () => {
   const nav = useNavigate();
-  const menuClick = (menuInfo: {key: string}) => {
+  const menuClick = (menuInfo: { key: string }) => {
     nav(menuInfo.key)
   }
 
@@ -31,7 +32,7 @@ const MenuBar: React.FC = () => {
       mode="horizontal"
       defaultSelectedKeys={['1']}
       items={[
-        getItem("Home", "/home"),
+        getItem("Home", "/home", <HomeOutlined/>),
         getItem("Chinese", "/listening/chinese"),
         getItem("English", "/listening/english"),
         getItem("Login", "/login")

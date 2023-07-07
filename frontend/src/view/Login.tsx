@@ -8,26 +8,24 @@ import {
 import {
   LoginForm,
   ProConfigProvider,
-  ProFormCaptcha,
   ProFormCheckbox,
   ProFormText,
 } from '@ant-design/pro-components';
 import { Space } from 'antd';
-import { AnyRecord } from 'dns';
 import type { CSSProperties } from 'react';
+import api from '../api';
 
 // customize form validator
 const validators = {
   username(_: any, value: string) {
     value = value.trim();
-    if(value.length == 0) return Promise.reject();
-    if (value.length < 6) return Promise.reject();
+    if (value.length == 0 || value.length < 5) return Promise.reject();
     return Promise.resolve();
   },
   password(_: any, value: string) {
+    if(!value) return Promise.reject();
     value = value.trim();
-    if(value.length == 0) return Promise.reject();
-    if (value.length < 6) return Promise.reject();
+    if (value.length == 0 || value.length < 6) return Promise.reject();
     return Promise.resolve();
   }
 }
@@ -42,7 +40,9 @@ const iconStyles: CSSProperties = {
 };
 
 export default () => {
-  const submit = async (values: AnyRecord) => { alert(JSON.stringify(values)) }
+  const submit = async (values: any) => {
+    api.login({ username: values.username, password: values.password })
+  }
 
   return (
     <ProConfigProvider hashed={false}>

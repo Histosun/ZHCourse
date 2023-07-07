@@ -6,7 +6,7 @@ interface AxiosConfigData {
     isToken: boolean;
 }
 
-const baseUrl: string = "http://localhost:8080";
+const baseUrl: string = "https://localhost:7159";
 
 let request = axios.create({
     baseURL: baseUrl,
@@ -15,9 +15,6 @@ let request = axios.create({
 
 request.interceptors.request.use(
     (config: InternalAxiosRequestConfig<AxiosConfigData>) => {
-        if (config.data?.isToken ) {
-            
-        }
         return config;
     },
     err => {
@@ -31,6 +28,7 @@ request.interceptors.response.use(
         return res;
     },
     err => {
+        console.log(123);
         return Promise.reject(err)
     }
 );
