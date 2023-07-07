@@ -1,9 +1,7 @@
-import { useEffect } from "react";
-import { useParams } from "react-router";
+import { useContext } from "react";
+import StoreContext from "../context/StoreContext";
 
 const Language: React.FC = () => {
-  const param = useParams();
-
   return (
     <div>language</div>
   )
