@@ -13,10 +13,25 @@ import {
   ProFormText,
 } from '@ant-design/pro-components';
 import { Space } from 'antd';
+import { AnyRecord } from 'dns';
 import type { CSSProperties } from 'react';
-import { useState } from 'react';
 
-type LoginType = 'phone' | 'account';
+// customize form validator
+const validators = {
+  username(_: any, value: string) {
+    value = value.trim();
+    if(value.length == 0) return Promise.reject();
+    if (value.length < 6) return Promise.reject();
+    return Promise.resolve();
+  },
+  password(_: any, value: string) {
+    value = value.trim();
+    if(value.length == 0) return Promise.reject();
+    if (value.length < 6) return Promise.reject();
+    return Promise.resolve();
+  }
+}
+
 
 const iconStyles: CSSProperties = {
   marginInlineStart: '16px',
@@ -27,6 +42,8 @@ const iconStyles: CSSProperties = {
 };
 
 export default () => {
+  const submit = async (values: AnyRecord) => { alert(JSON.stringify(values)) }
+
   return (
     <ProConfigProvider hashed={false}>
       <div style={{ backgroundColor: 'white' }}>
@@ -47,7 +64,7 @@ export default () => {
               submitText: "Login",
             }
           }}
-          onFinish={async (values) => { return true }}
+          onFinish={submit}
         >
           <ProFormText
             name="username"
@@ -58,9 +75,9 @@ export default () => {
             placeholder={'Username'}
             rules={[
               {
-                required: true,
-                message: 'Please Input your Username!',
-              },
+                validator: validators.username,
+                message: 'Invalid username!'
+              }
             ]}
           />
           <ProFormText.Password
@@ -72,9 +89,9 @@ export default () => {
             placeholder={'Password'}
             rules={[
               {
-                required: true,
-                message: 'Please Input your Password!',
-              },
+                validator: validators.password,
+                message: 'Invalid password!',
+              }
             ]}
           />
           <div
