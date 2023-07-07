@@ -36,11 +36,9 @@ const App: React.FC = () => {
           }}
         >
 
-          <BrowserRouter>
-            <Suspense fallback={<div>Loading...</div>}>
-              {elements}
-            </Suspense>
-          </BrowserRouter>
+          <Suspense fallback={<div>Loading...</div>}>
+            {elements}
+          </Suspense>
         </Content>
       </Content>
       <Footer style={{ textAlign: 'center' }}>Ant Design ©2023 Created by Ant UED</Footer>

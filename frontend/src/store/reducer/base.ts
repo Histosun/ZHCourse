@@ -1,6 +1,6 @@
 import { Reducer } from 'redux'
 
-const baseReduer: Reducer = (state, action) => {
+const baseReduer: Reducer = (state = {}, action) => {
     switch(action.type){
         default:
     }

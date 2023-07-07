@@ -15,7 +15,7 @@ let request = axios.create({
 
 request.interceptors.request.use(
     (config: InternalAxiosRequestConfig<AxiosConfigData>) => {
-        if (config.data?.isToken && ) {
+        if (config.data?.isToken ) {
             
         }
         return config;
