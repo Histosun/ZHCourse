@@ -9,11 +9,13 @@ public class FileService : IFileService
 {
     private readonly FSDbContext DbContext;
     private readonly IStorageClient BackupStorage;
+    private readonly IStorageClient PublicStorage;
 
-    public FileService(FSDbContext dbContext, IStorageClient storageClient)
+    public FileService(FSDbContext dbContext, IEnumerable<IStorageClient> storageClients)
     {
         DbContext = dbContext;
-        BackupStorage = storageClient;
+        PublicStorage = storageClients.First(item => item.StorageType == StorageType.Public);
+        BackupStorage = storageClients.First(item => item.StorageType == StorageType.Backup);
     }
     public Task<UploadedFile> FindFileAsync(long fileSize, string sha256Hash)
     {
@@ -37,8 +39,9 @@ public class FileService : IFileService
         
         stream.Position = 0;
         Uri backupUrl = await BackupStorage.SaveAsync(key, stream, cancellationToken);
+        Uri publicUrl = await PublicStorage.SaveAsync(key, stream, cancellationToken);
 
-        var upFile = UploadedFile.Create(fileSize, fileName, sha256Hash, backupUrl, backupUrl);
+        var upFile = UploadedFile.Create(fileSize, fileName, sha256Hash, backupUrl, publicUrl);
         DbContext.Add(upFile);
         await DbContext.SaveChangesAsync();
 

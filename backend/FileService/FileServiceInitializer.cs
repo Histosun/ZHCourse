@@ -17,5 +17,6 @@ public class FileServiceInitializer
         builder.Services.AddScoped<IFileService, FileService>();
         builder.Services.Configure<BackupStorageOptions>(builder.Configuration.GetSection("FileService:Backup"));
         builder.Services.AddScoped<IStorageClient, BackupStorageClient>();
+        builder.Services.AddScoped<IStorageClient, MockCloudStorageClient>();
     }
 }
