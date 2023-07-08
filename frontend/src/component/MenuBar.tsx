@@ -40,7 +40,6 @@ const MenuBar: React.FC = () => {
       onClick={menuClick}
       style={{
         width: '100%',
-        marginRight: 'auto'
       }}
     >
     </Menu>

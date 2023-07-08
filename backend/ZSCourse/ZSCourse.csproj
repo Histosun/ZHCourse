@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\IdentityService\IdentityService.csproj" />
     <ProjectReference Include="..\FileService\FileService.csproj" />
+    <ProjectReference Include="..\ListeningService\ListeningService.csproj" />
   </ItemGroup>
 
 </Project>
