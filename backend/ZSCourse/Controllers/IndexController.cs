@@ -1,4 +1,4 @@
-﻿using ListeningService.Services;
+﻿using ZSCourse.ListeningService;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ZSCourse.Controllers;
@@ -8,6 +8,7 @@ namespace ZSCourse.Controllers;
 public class IndexController : ControllerBase
 {
     private readonly IListeningService listeningService;
+
     public IndexController(IListeningService listeningService)
     {
         this.listeningService = listeningService;
@@ -15,9 +16,8 @@ public class IndexController : ControllerBase
 
 
     [HttpGet]
-    public Task<IEnumerable<ListeningService.Index>> GetIndexByLanguage()
+    public async Task<ListeningService.Index[]> GetIndexByLanguage(long languageId)
     {
-        
-        return null;
+        return await listeningService.GetIndexByLanguageAsync(languageId);
     }
 }

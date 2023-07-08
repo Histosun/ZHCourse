@@ -5,6 +5,7 @@ namespace ZSCourse.ListeningService;
 public class LSDbContext : DbContext
 {
     public DbSet<Index> Index { get; private set; }
+    public DbSet<Language> Language { get; private set; }
     public LSDbContext(DbContextOptions<LSDbContext> options)
         : base(options)
     {
