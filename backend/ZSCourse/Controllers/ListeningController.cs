@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using ZS.JWT;
+using ZSCourse.Requests;
 
 namespace ZSCourse.Controllers;
 
@@ -17,13 +18,17 @@ public class ListeningController : ControllerBase
         this.listeningService = listeningService;
     }
 
-    [HttpGet]
+    [HttpPost]
     [Authorize(Roles = "admin")]
-    public async Task<ListeningService.Index[]> CreateIndex([FromBody] long languageId)
+    public async Task CreateIndex([FromBody] CreateIndexRequest request)
     {
-        return await listeningService.GetIndexByLanguageAsync(languageId);
+        var index = new ListeningService.Index();
+        index.Title = request.title;
+        index.coverPicUri = request.picUri;
+        index.Title = request.title;
+        index.LanguageId = request.languageId;
+        await listeningService.CreateIndexAsync(index);
     }
-
 
     [HttpGet]
     [AllowAnonymous]

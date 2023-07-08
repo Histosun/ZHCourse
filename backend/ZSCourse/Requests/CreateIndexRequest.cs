@@ -1,5 +1,3 @@
 ﻿namespace ZSCourse.Requests;
 
-public record CreateIndexRequest(string name, string description, Uri picUri, long languageId);
-
-
+public record CreateIndexRequest(string name, string title, Uri picUri, long languageId);
