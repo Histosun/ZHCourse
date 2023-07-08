@@ -32,13 +32,18 @@ const MenuBar: React.FC = () => {
       mode="horizontal"
       defaultSelectedKeys={['1']}
       items={[
-        getItem("Home", "/home", <HomeOutlined/>),
+        getItem("Home", "/home", <HomeOutlined />),
         getItem("Chinese", "/listening/chinese"),
         getItem("English", "/listening/english"),
         getItem("Login", "/login")
       ]}
       onClick={menuClick}
-    />
+      style={{
+        width: '100%',
+        marginRight: 'auto'
+      }}
+    >
+    </Menu>
   )
 }
 

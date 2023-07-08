@@ -1,5 +1,7 @@
 import user from "./user";
 
-export default {
+const action = {
     user: user
 }
+
+export default action;

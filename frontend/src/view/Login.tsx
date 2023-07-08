@@ -22,13 +22,13 @@ import { useNavigate } from 'react-router';
 const validators = {
   username(_: any, value: string) {
     value = value.trim();
-    if (value.length == 0 || value.length < 5) return Promise.reject();
+    if (value.length === 0 || value.length < 5) return Promise.reject();
     return Promise.resolve();
   },
   password(_: any, value: string) {
     if (!value) return Promise.reject();
     value = value.trim();
-    if (value.length == 0 || value.length < 6) return Promise.reject();
+    if (value.length === 0 || value.length < 6) return Promise.reject();
     return Promise.resolve();
   }
 }

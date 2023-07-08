@@ -1,6 +1,6 @@
 import * as TYPES from "../action_types"
 
-export default {
+const user = {
     login(token: string) {
         return {
             type: TYPES.USER_LOGIN,
@@ -13,3 +13,5 @@ export default {
         }
     }
 }
+
+export default user;
