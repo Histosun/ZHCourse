@@ -8,5 +8,5 @@ public interface ILoginService
     
     public Task<bool> CreateWorldAsync();
 
-    public Task Logout(string token);
+    public Task LogoutAsnyc(string token);
 }

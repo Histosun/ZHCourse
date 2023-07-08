@@ -17,4 +17,11 @@ export function login(loginRequest: LoginRequest) {
 }
 
 export function logout() {
+    return request({
+        url: '/Login/Logout',
+        method: 'post',
+        headers: {
+            isToken: true
+        }
+    });
 }

@@ -116,7 +116,7 @@ namespace ZSCourse.IdentityService
                 throw new Exception("Failed to Store Key");
         }
 
-        public async Task Logout(string token)
+        public async Task LogoutAsnyc(string token)
         {
             JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
             JwtSecurityToken jwt = tokenHandler.ReadJwtToken(token);

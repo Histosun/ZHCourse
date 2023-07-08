@@ -8,13 +8,20 @@ namespace ZSCourse.Controllers;
 [Route("[controller]/[action]")]
 [ApiController]
 [Authorize(AuthenticationSchemes = ZSJWTDefaults.Schema)]
-public class IndexController : ControllerBase
+public class ListeningController : ControllerBase
 {
     private readonly IListeningService listeningService;
 
-    public IndexController(IListeningService listeningService)
+    public ListeningController(IListeningService listeningService)
     {
         this.listeningService = listeningService;
+    }
+
+    [HttpGet]
+    [Authorize(Roles = "admin")]
+    public async Task<ListeningService.Index[]> CreateIndex([FromBody] long languageId)
+    {
+        return await listeningService.GetIndexByLanguageAsync(languageId);
     }
 
 

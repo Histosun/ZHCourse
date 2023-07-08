@@ -39,15 +39,9 @@ namespace ZSCourse.IdentityService.Controllers
         }
 
         [HttpPost]
-        public ActionResult Logout(LogoutRequest logout)
+        public async Task Logout()
         {
-            idService.Logout(logout.Token);
-            return Ok();
-        }
-
-        [HttpGet]
-        public void Test()
-        {
+            await idService.LogoutAsnyc(HttpContext.Request.Headers["Authentication"]);
         }
     }
 }
