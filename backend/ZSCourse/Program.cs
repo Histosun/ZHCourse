@@ -1,10 +1,12 @@
 using ZSCourse.FileService;
 using ZSCourse.IdentityService;
+using ZSCourse.ListeningService;
 
 var builder = WebApplication.CreateBuilder(args);
 
 IdentityServiceInitializer.Init(builder);
 FileServiceInitializer.Init(builder);
+ListeningServiceInitializer.Init(builder);
 
 builder.Services.AddControllers();
 

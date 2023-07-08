@@ -14,5 +14,6 @@ public class ListeningServiceInitializer
             string connStr = dbconfig.GetSection("ConnStr").Value;
             options.UseNpgsql(connStr);
         });
+        builder.Services.AddScoped<IListeningService, ListeningService>();
     }
 }

@@ -1,10 +1,13 @@
 ﻿using ZSCourse.ListeningService;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using ZS.JWT;
 
 namespace ZSCourse.Controllers;
 
 [Route("[controller]/[action]")]
 [ApiController]
+[Authorize(AuthenticationSchemes = ZSJWTDefaults.Schema)]
 public class IndexController : ControllerBase
 {
     private readonly IListeningService listeningService;
@@ -16,7 +19,8 @@ public class IndexController : ControllerBase
 
 
     [HttpGet]
-    public async Task<ListeningService.Index[]> GetIndexByLanguage(long languageId)
+    [AllowAnonymous]
+    public async Task<ListeningService.Index[]> GetIndexByLanguage([FromQuery]long languageId)
     {
         return await listeningService.GetIndexByLanguageAsync(languageId);
     }
