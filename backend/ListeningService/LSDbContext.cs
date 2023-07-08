@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace ZSCourse.IdentityService;
+namespace ZSCourse.ListeningService;
 
 public class LSDbContext : DbContext
 {
+    public DbSet<ZSCourse.ListeningService.Index> Index { get; private set; }
     public LSDbContext(DbContextOptions<LSDbContext> options)
         : base(options)
     {

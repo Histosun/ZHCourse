@@ -6,7 +6,7 @@ public class UploadedFile
     public DateTime CreationTime { get; private set; }
 
     /// <summary>
-    /// 文件大小（尺寸为字节）
+    /// File size in bytes.
     /// </summary>
     public long FileSizeInBytes { get; private set; }
     /// <summary>
