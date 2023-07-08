@@ -9,8 +9,11 @@ interface IndexCardProps {
     description: string
 }
 
+const onCardClick = () => {
+    
+}
+
 const IndexCard: React.FC<IndexCardProps> = (props: IndexCardProps) => {
-    const onCardClick = () => {};
     return <Card
         hoverable
         style={{ width: 240 }}

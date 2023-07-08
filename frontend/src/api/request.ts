@@ -1,4 +1,5 @@
 import axios, { InternalAxiosRequestConfig } from "axios"
+import util from "../util";
 
 axios.defaults.headers['Content-Type'] = 'application/json;charset=utf-8'
 
@@ -11,8 +12,10 @@ let request = axios.create({
 
 request.interceptors.request.use(
     (config: InternalAxiosRequestConfig) => {
-        if(config.headers.isToken){
-            
+        if (config.headers.isToken) {
+            let token = util.cookies.getToken();
+            if (!token) throw new Error('User not authenticated');
+            config.headers['Authentication'] = token;
         }
         return config;
     },

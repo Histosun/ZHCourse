@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Col, Row } from 'antd';
 import IndexCard from '../component/IndexCard';
 
 const Language: React.FC = () => {
+  useEffect(() =>{
+    
+  }, []);
+
   return (
     <Row justify="space-around">
         <Col span={4}>

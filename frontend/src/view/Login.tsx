@@ -12,11 +12,12 @@ import {
   ProFormText,
 } from '@ant-design/pro-components';
 import { Space } from 'antd';
-import type { CSSProperties } from 'react';
+import { useState, type CSSProperties } from 'react';
 import api from '../api';
 import { connect } from 'react-redux';
 import action from '../store/action';
 import { useNavigate } from 'react-router';
+import util from '../util';
 
 // customize form validator
 const validators = {
@@ -42,6 +43,8 @@ const iconStyles: CSSProperties = {
 };
 
 const LoginView = (props: any) => {
+  const [checked, setChecked] = useState(false);
+
   let navigate = useNavigate();
   let { login } = props;
 
@@ -49,10 +52,16 @@ const LoginView = (props: any) => {
     api.user.login({ username: values.username, password: values.password })
       .then(result => {
         let token = result.data as string;
-        if (token) {
-          login(token);
-          navigate(-1);
+        if (!token) {
+          return;
         }
+
+        if (checked) {
+          util.cookies.setToken(token);
+        }
+
+        login(token);
+        navigate(-1);
       })
       .catch((err) => {
         console.log(err);
