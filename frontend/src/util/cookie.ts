@@ -14,8 +14,10 @@ function removeToken() {
     Cookies.remove(token_key);
 }
 
-export default {
+const cookie = {
     setToken: setToken,
     getToken: getToken,
     removeToken: removeToken
 }
+
+export default cookie;

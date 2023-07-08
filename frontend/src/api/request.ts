@@ -13,7 +13,7 @@ let request = axios.create({
 request.interceptors.request.use(
     (config: InternalAxiosRequestConfig) => {
         if (config.headers.isToken) {
-            let token = util.cookies.getToken();
+            let token = util.cookie.getToken();
             if (!token) throw new Error('User not authenticated');
             config.headers['Authentication'] = token;
         }

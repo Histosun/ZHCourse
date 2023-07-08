@@ -1,6 +1,7 @@
-import cookies from './cookies'
+import cookie from './cookie'
 
-
-export default {
-    cookies: cookies
+const util = {
+    cookie: cookie
 }
+
+export default util;

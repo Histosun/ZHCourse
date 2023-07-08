@@ -10,7 +10,7 @@ export function login(loginRequest: LoginRequest) {
         url: '/Login/LoginByUserNameAndPwd',
         method: 'post',
         headers: {
-            isToken: true
+            isToken: false
         },
         data: loginRequest
     });

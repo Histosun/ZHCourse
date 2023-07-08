@@ -57,7 +57,7 @@ const LoginView = (props: any) => {
         }
 
         if (checked) {
-          util.cookies.setToken(token);
+          util.cookie.setToken(token);
         }
 
         login(token);
