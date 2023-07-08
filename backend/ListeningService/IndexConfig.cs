@@ -3,10 +3,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ZSCourse.ListeningService;
 
-public class IndexConfig : IEntityTypeConfiguration<Index>
+public class IndexConfig : IEntityTypeConfiguration<Language>
 {
-    public void Configure(EntityTypeBuilder<Index> builder)
+    public void Configure(EntityTypeBuilder<Language> builder)
     {
-        builder.ToTable("T_Index");
+        builder.ToTable("T_Language");
+
+        builder.HasKey(x => x.Id);
+
+        builder.HasIndex(it => it.Name)
+            .IsUnique();
     }
 }
